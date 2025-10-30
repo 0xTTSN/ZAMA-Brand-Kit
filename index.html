@@ -28,17 +28,46 @@
             background: var(--yellow);
             padding: 36px 0 28px 0;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             border-bottom: 4px solid var(--orange);
+            justify-content: center;
+            gap: 36px;
+        }
+        .header-links {
+            display: flex;
+            flex-direction: row;
+            gap: 36px;
+            align-items: center;
+            flex: 1 0 0;
+            justify-content: space-between;
+            max-width: 600px;
+        }
+        .header-link {
+            font-weight: 600;
+            color: var(--black);
+            background: var(--yellow);
+            padding: 7px 18px;
+            border-radius: 7px;
+            font-size: 1.08em;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-link:hover {
+            background: var(--orange);
+            color: var(--black);
         }
         .logo {
             width: 160px;
             height: auto;
             display: block;
-            margin: 0 auto;
+            margin: 0 24px;
             filter: drop-shadow(0 2px 20px var(--orange));
             background: transparent;
+            flex-shrink: 0;
         }
         .intro {
             max-width: 700px;
@@ -96,7 +125,6 @@
             padding: 0;
             background: none;
         }
-        /* ICONS */
         .icons-list {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -138,7 +166,6 @@
         .download-btn:active {
             background: var(--yellow);
         }
-        /* ILLUSTRATIONS */
         .illustrations-list {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -166,7 +193,6 @@
             margin-bottom: 0;
             box-sizing: border-box;
         }
-        /* COLORS */
         .colors-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -227,7 +253,6 @@
         .color-card.copied .copy-tooltip {
             opacity: 1;
         }
-        /* MODAL */
         .modal-bg {
             position: fixed;
             inset: 0;
@@ -263,7 +288,7 @@
             margin: 18px 0 8px 0;
             font-size: 1.08em;
         }
-        .twitter-btn {
+        .twitter-btn-modal {
             background: var(--yellow);
             color: var(--black);
             border-radius: 7px;
@@ -278,8 +303,8 @@
             gap: 10px;
             transition: background var(--transition);
         }
-        .twitter-btn svg {
-            width: 22px; height: 22px;
+        .twitter-btn-modal img {
+            width: 22px; height: 22px; vertical-align: middle;
         }
         .close-modal {
             position: absolute;
@@ -339,20 +364,28 @@
                 height: 100vw !important;
                 max-height: 180px;
             }
+            header { gap: 8px; }
+            .logo { margin: 0 4vw; }
+            .footer { font-size: 0.99em; }
         }
-        /* Powered by TTSN */
         .footer {
-            padding: 12px 0 12px 0;
             text-align: center;
+            padding: 6px 0 12px 0;
             font-size: 0.96em;
             color: #888;
             font-weight: 400;
-            background: none;
             border-top: 2px dashed var(--yellow);
+            margin-bottom: 0;
+        }
+        .footer .sep {
+            margin: 0 12px;
+            color: #FFD208;
+            font-weight: 400;
         }
         .footer a {
-            color: #888;
+            color: #FFD208;
             text-decoration: underline;
+            font-weight: 600;
             transition: color 0.15s;
         }
         .footer a:hover {
@@ -362,7 +395,13 @@
 </head>
 <body>
     <header>
+        <div class="header-links" style="justify-content: flex-start;">
+            <a class="header-link" href="https://www.zama.ai/" target="_blank">Website</a>
+        </div>
         <img src="Logo-main.png" alt="ZAMA Logo" class="logo" />
+        <div class="header-links" style="justify-content: flex-end;">
+            <a class="header-link" href="https://x.com/zama_fhe" target="_blank">Twitter</a>
+        </div>
     </header>
     <div class="intro">
         The ZAMA Brand Kit provides official brand assets you can download and use in your content about ZAMA while staying consistent with the project’s visual identity
@@ -376,7 +415,6 @@
         <div class="section-bg">
             <div class="section">
                 <div class="icons-list">
-                    <!-- ...  ... -->
                     <div class="icon-card"><img src="logo-zama-squareblack.png" alt="" /><button class="download-btn" onclick="startDownload('logo-zama-squareblack.png')">Download</button></div>
                     <div class="icon-card"><img src="logo-zama-squareorange.png" alt="" /><button class="download-btn" onclick="startDownload('logo-zama-squareorange.png')">Download</button></div>
                     <div class="icon-card"><img src="logo-zama-squarewhite.png" alt="" /><button class="download-btn" onclick="startDownload('logo-zama-squarewhite.png')">Download</button></div>
@@ -453,25 +491,24 @@
                 </div>
             </div>
         </div>
-        <!-- Modal for Download -->
-        <div class="modal-bg" id="modalBg">
-            <div class="modal">
-                <button class="close-modal" onclick="closeModal()" aria-label="Close">&times;</button>
-                <h3>Download Started!</h3>
-                <p>Thank you for using ZAMA Brand Kit.<br>
-                Want to stay updated? Follow me on Twitter:</p>
-                <a class="twitter-btn" href="https://twitter.com/0x_ttsn" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24"><path fill="#1DA1F2" d="M21.543 7.104c.015.211.015.423.015.636 0 6.49-4.944 13.973-13.973 13.973-2.775 0-5.361-.82-7.543-2.23.386.045.772.075 1.173.075 2.3 0 4.415-.782 6.104-2.104-2.146-.04-3.958-1.457-4.58-3.407.3.045.608.075.925.075.446 0 .872-.06 1.28-.166-2.244-.45-3.93-2.43-3.93-4.808v-.061c.661.368 1.418.592 2.222.62-1.318-.882-2.178-2.39-2.178-4.097 0-.906.242-1.757.664-2.492 2.416 2.97 6.032 4.924 10.107 5.133-.083-.362-.125-.74-.125-1.125 0-2.719 2.207-4.925 4.924-4.925 1.417 0 2.702.598 3.602 1.565 1.125-.223 2.183-.633 3.137-1.2-.37 1.148-1.148 2.112-2.168 2.722 1-.12 1.958-.386 2.845-.78z"/></svg>
-                    @0x_ttsn
-                </a>
-            </div>
-        </div>
     </main>
     <div class="footer">
-        built by <a href="https://github.com/0xTTSN" target="_blank">TTSN</a>
+        built by <a href="https://github.com/0xTTSN/ZAMA-Brand-Kit" target="_blank">TTSN</a><span class="sep">|</span>
+        Follow me on <a href="https://x.com/0x_ttsn" target="_blank">Twitter</a>
+    </div>
+    <div class="modal-bg" id="modalBg">
+        <div class="modal">
+            <button class="close-modal" onclick="closeModal()" aria-label="Close">&times;</button>
+            <h3>Download Started!</h3>
+            <p>Thank you for using ZAMA Brand Kit.<br>
+            Want to stay updated?
+            <a class="twitter-btn-modal" href="https://x.com/0x_ttsn" target="_blank">
+                <img src="x.png" alt="Twitter" />Twitter
+            </a>
+            </p>
+        </div>
     </div>
     <script>
-        // Copy color hex
         function copyColor(btn, hex) {
             navigator.clipboard.writeText(hex).then(function() {
                 const card = btn.closest('.color-card');
@@ -479,7 +516,7 @@
                 setTimeout(() => card.classList.remove('copied'), 1200);
             });
         }
-        // Download simulation and modal
+        let modalShown = false;
         function startDownload(filename) {
             const link = document.createElement('a');
             link.href = filename;
@@ -487,17 +524,22 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            document.getElementById('modalBg').style.display = 'flex';
+            if (!modalShown) {
+                document.getElementById('modalBg').style.display = 'flex';
+                modalShown = true;
+            }
         }
         function downloadAllZip() {
-            // 
             const link = document.createElement('a');
             link.href = 'zama-assets.zip';
             link.download = 'zama-assets.zip';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            document.getElementById('modalBg').style.display = 'flex';
+            if (!modalShown) {
+                document.getElementById('modalBg').style.display = 'flex';
+                modalShown = true;
+            }
         }
         function closeModal() {
             document.getElementById('modalBg').style.display = 'none';
